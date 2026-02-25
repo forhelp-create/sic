@@ -1,0 +1,24 @@
+R1(config)# ntp server 192.168.1.5
+R1(config)# ntp update-calendar 
+
+R2(config)# ntp server 192.168.1.5
+R2(config)# ntp update-calendar 
+
+R3(config)# ntp server 192.168.1.5
+R3(config)# ntp update-calendar 
+
+
+R1(config)# ntp authenticate
+R1(config)# ntp trusted-key 1
+R1(config)# ntp authentication-key 1 md5 NTPpa55 
+
+R2(config)# ntp authenticate
+R2(config)# ntp trusted-key 1
+R2(config)# ntp authentication-key 1 md5 NTPpa55
+
+R3(config)# ntp authenticate
+R3(config)# ntp trusted-key 1
+R3(config)# ntp authentication-key 1 md5 NTPpa55 Step
+
+
+#SHOW CLOCK
