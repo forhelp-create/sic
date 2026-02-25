@@ -1,0 +1,34 @@
+FOR EVERY ROUTER
+
+#line vty 0 4
+#password admin
+#login
+#en
+#router ospf 1
+#network 192.168.1.0 0.0.0.255 area 0
+#network 10.1.1.0 0.0.0.255 area 0
+
+Part A for R1 only 
+username Admin1 secret admin1pa55
+aaa new-model
+aaa authentication login default local
+line console 0
+login authentication default
+end
+exit
+
+password:admin1pa55
+
+ip domain-name ccnasecurity.com
+crypto key generate rsa
+1024
+aaa authentication login SSH-LOGIN local 
+line vty 0 4 
+login authentication SSH-LOGIN
+transport input ssh
+end 
+exit
+
+Now go to PC_A
+ssh –l Admin1 192.168.1.1
+admin1pa55
