@@ -1,0 +1,24 @@
+R1(config)# router ospf 1
+ R1(config-router)# area 0 authentication message-digest
+ R2(config)# router ospf 1
+ R2(config-router)# area 0 authentication message-digest
+ R3(config)# router ospf 1
+ R3(config-router)# area 0 authentication message-digest 
+
+ ENABLE 
+ CONFIGURE TERMINAL
+ ROUTER OSPF 1
+
+
+R1(config)# interface s0/0/0
+ R1(config-if)# ip ospf message-digest-key 1 md5 MD5pa55
+ R2(config)# interface s0/0/0
+ R2(config-if)# ip ospf message-digest-key 1 md5 MD5pa55
+ R2(config-if)# interface s0/0/1
+ R2(config-if)# ip ospf message-digest-key 1 md5 MD5pa55
+ R3(config)# interface s0/0/1
+ R3(config-if)# ip ospf message-digest-key 1 md5 MD5pa55
+
+
+TO CHECK
+show ip ospf interface
