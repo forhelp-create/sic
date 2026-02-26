@@ -1,0 +1,16 @@
+R1(config)# access-list 100 permit tcp 172.22.34.64 0.0.0.31 host 172.22.34.62 eq ftp
+R1(config)# access-list 100 permit icmp 172.22.34.64 0.0.0.31 host 172.22.34.62
+R1(config)# interface gigabitEthernet 0/0
+R1(config-if)# ip access-group 100
+
+
+. Ping from PC1 to Server
+b. FTP from PC1 to Server. The username and password are both cisco
+PC> ftp 172.22.34.62
+c. Exit the FTP service of the Server
+
+
+R1(config-ext-nacl)# permit tcp 172.22.34.96 0.0.0.15 host 172.22.34.62 eq www
+R1(config-ext-nacl)# permit icmp 172.22.34.96 0.0.0.15 host 172.22.34.62
+R1(config)# interface gigabitEthernet 0/1
+R1(config-if)# ip access-group HTTP_ONLY in
