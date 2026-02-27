@@ -1,0 +1,22 @@
+R3(config)# access-list 110 permit ip 192.168.3.0 0.0.0.255 192.168.1.0 0.0.0.255 
+
+ 3: Configure the IKE Phase 1 ISAKMP properties on R3
+ R3(config)# crypto isakmp policy 10
+ R3(config-isakmp)# encryption aes 256
+ R3(config-isakmp)# authentication pre-share
+ R3(config-isakmp)# group 5
+ R3(config-isakmp)# exit
+ R3(config)# crypto isakmp key vpnpa55 address 10.1.1.2 
+
+ R3(config)# crypto ipsec transform-set VPN-SET esp-aes esp-sha-hmac
+ R3(config)# crypto map VPN-MAP 10 ipsec-isakmp
+ R3(config-crypto-map)# description VPN connection to R1
+ R3(config-crypto-map)# set peer 10.1.1.2
+ R3(config-crypto-map)# set transform-set VPN-SET
+ R3(config-crypto-map)# match address 110
+ R3(config-crypto-map)# exit 
+
+ R3(config)# interface s0/0/1
+ R3(config-if)# crypto map VPN-MAP
+
+ 
