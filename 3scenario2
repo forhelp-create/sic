@@ -1,0 +1,29 @@
+Switch A ----CLI
+• en
+• config
+• int vlan1
+• ip address 10.101.117.50 25+5.255.255.258
+• no shutdown
+• ip default-gateway 10.101.117.49
+Same for switch B & switch C only change ip address & default gateway
+
+Again switch ----CLI for all switches
+• en
+• config
+• enable secret enpa55
+• line console 0
+• password conpa55
+• login
+
+Again switch---CLI for all switches
+• ip domain-name ccnaSecurity.com
+• username Admin Secret Adminpa55
+• line vty 0 4
+• login local
+• crypto key generate rsa
+• enter bit---- 1024
+
+Will ask password :-Conpa55
+ Enpassword :- enpa55
+RouterCLI access-list 199 permit tcp 10.101.117.32 0.0.0.15
+10.101.117.0 0.0.0.31 eq 22 
